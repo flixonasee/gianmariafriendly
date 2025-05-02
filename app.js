@@ -209,6 +209,9 @@ function showLandingPage() {
   document.getElementById('breadcrumb-title').textContent = 'Home';
   updateGoBackVisibility();
 
+  // Make the snowflakes visible
+  document.querySelector('.snowflakes').style.display = 'block';
+
   document.getElementById('content').innerHTML = `
     <div class="logo">
       <img src="https://github.com/flixonasee/gfriendly/blob/a24c81f9ccf4d4fa2336e50d78c4f6d6abeae3fd/logo.svg?raw=true" alt="Gianmaria-Friendly Logo">
@@ -228,6 +231,9 @@ function showCategories(categories, title = 'Categorie') {
   historyStack.push({ screen: title, categories });
   setBreadcrumbTitle(title);
   updateGoBackVisibility();
+
+  // Hide the snowflakes
+  document.querySelector('.snowflakes').style.display = 'none';
 
   let categoriesHTML = '<h2 class="subtitle">Scegli una categoria:</h2>';
   categories.forEach((category, index) => {
