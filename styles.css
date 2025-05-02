@@ -87,14 +87,11 @@ body {
 
 
 .snowflake {
-  color: #fff;
-  font-size: 90px;
-  font-family: Arial;
-  text-shadow: 0 0 1px #000;
-   position: absolute;
-  top: var(--top, 0); /* Use custom CSS variable for top position */
-  left: var(--left, 0); /* Use custom CSS variable for left position */
-  animation: fall 10s linear infinite; /* Optional animation */
+  position: absolute;
+  top: var(--top, 0); /* Start higher on the page */
+  left: var(--left, 0); /* Random horizontal starting point */
+  font-size: 1.5rem; /* Adjust size if needed */
+  animation: fall 20s linear infinite, sway 5s ease-in-out infinite; /* Add falling and swaying animations */
 }
 
 @keyframes fall {
@@ -102,6 +99,15 @@ body {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(100vh); /* Snowflakes fall to the bottom */
+    transform: translateY(100vh); /* Fall to the bottom of the viewport */
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: translateX(0); /* No horizontal shift at the start and end */
+  }
+  50% {
+    transform: translateX(20px); /* Sway to the right */
   }
 }
