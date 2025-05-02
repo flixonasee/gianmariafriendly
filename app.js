@@ -311,22 +311,37 @@ function goBack() {
 document.getElementById('start-button')?.addEventListener('click', () => showCategories(categories));
 showLandingPage(); // Show the landing page on app load
 
-
+// snowflakes
 function randomizeSnowflakes() {
-  const snowflakes = document.querySelectorAll('.snowflake'); // Select all snowflakes
-  snowflakes.forEach((snowflake) => {
-    const randomTop = Math.random() * 100; // Random percentage for top (0-100%)
-    const randomLeft = Math.random() * 100; // Random percentage for left (0-100%)
-    snowflake.style.setProperty('--top', `${randomTop}vh`); // Set top position as a CSS variable
-    snowflake.style.setProperty('--left', `${randomLeft}vw`); // Set left position as a CSS variable
-  });
+  const snowflakeContainer = document.querySelector('.snowflakes');
+  const snowflakesCount = 50; // Increase the number of snowflakes
+
+  // Clear existing snowflakes (if any)
+  snowflakeContainer.innerHTML = '';
+
+  // Create new snowflakes
+  for (let i = 0; i < snowflakesCount; i++) {
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    snowflake.textContent = getRandomSnowflakeEmoji(); // Add random emoji for variety
+
+    // Set random starting positions
+    const randomTop = Math.random() * 20; // Random top position closer to the top (0-20% of viewport height)
+    const randomLeft = Math.random() * 100; // Random left position across the viewport
+    snowflake.style.setProperty('--top', `${randomTop}vh`);
+    snowflake.style.setProperty('--left', `${randomLeft}vw`);
+
+    snowflakeContainer.appendChild(snowflake); // Add to the container
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  randomizeSnowflakes(); // Randomize snowflake positions on page load
-});
+// Utility function to get a random snowflake emoji
+function getRandomSnowflakeEmoji() {
+  const emojis = ['🧀', '🍓', '🥦', '🥩', '🐟', '🍰', '🥤'];
+  return emojis[Math.floor(Math.random() * emojis.length)];
+}
 
+// Call the function on page load
 document.addEventListener('DOMContentLoaded', () => {
-  randomizeSnowflakes(); // Call the function here to randomize positions
-  showLandingPage(); // Show the landing page on app load
+  randomizeSnowflakes(); // Randomize positions and generate more snowflakes
 });
