@@ -1,18 +1,3 @@
-/* Import GrafienRegular Font (Global Font) */
-@font-face {
-  font-family: 'GrafienRegular';
-  src: url('http://flixonasee.github.io/gfriendly/Font/GrafienRegular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* Import Gfriend Font (Button Font) */
-@font-face {
-  font-family: 'Gfriend';
-  src: url('http://flixonasee.github.io/gfriendly/Font/Gfriend.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
 
 /* General Reset */
 body {
@@ -88,6 +73,7 @@ body {
 
 .snowflake {
   position: absolute;
+  index:-1;
   top: var(--top, 0); /* Start higher on the page */
   left: var(--left, 0); /* Random horizontal starting point */
   font-size: 1.5rem; /* Adjust size if needed */
