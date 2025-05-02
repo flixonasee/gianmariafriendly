@@ -1,0 +1,96 @@
+/* Import GrafienRegular Font (Global Font) */
+@font-face {
+  font-family: 'GrafienRegular';
+  src: url('http://flixonasee.github.io/gfriendly/Font/GrafienRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Import Gfriend Font (Button Font) */
+@font-face {
+  font-family: 'Gfriend';
+  src: url('http://flixonasee.github.io/gfriendly/Font/Gfriend.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* General Reset */
+body {
+  font-family: 'GrafienRegular', sans-serif; /* Apply GrafienRegular globally */
+  margin: 0;
+  padding: 0;
+  background-color: #bbe2ff;
+  color: #1A1A1A; /* Dark text color */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Logo Styling */
+.logo {
+  max-width: 400px; /* Limit the logo's width */
+  margin: 0 auto; /* Center the logo */
+  margin-top: 40px; /* Add space above the logo */
+}
+
+.logo img {
+  width: 100%; /* Ensure the logo scales within its container */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+/* Header Typography */
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #1A1A1A; /* Dark text color */
+}
+
+/* Landing Page Layout */
+#landing-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cover Image Styling */
+.cover-img img {
+  width: 260px; /* Adjusted width for the cover image */
+  height: auto; /* Automatically adjust height to maintain aspect ratio */
+  margin: 20px 0;
+  border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+/* Button */
+.category-button {
+  padding: 12px;
+  border-radius: 30px; /* Rounded corners */
+  background: #fff; /* Coral color */
+  color: #000;
+  font-size: 22px;
+  font-family: 'Gfriend', sans-serif; /* Apply Gfriend font to buttons */
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 200px;
+  transition: background 0.2s ease-in-out;
+}
+
+.category-button:hover {
+  background: #FFEB3B; /* Slightly darker coral */
+}
+
+
+.snowflake {
+  color: #fff;
+  font-size: 90px;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:-1;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:https://proxy.everskies.com/a/https://proxy.everskies.com/a/2.5s,1s;animation-delay:https://proxy.everskies.com/a/https://proxy.everskies.com/a/2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,https://proxy.everskies.com/a/https://proxy.everskies.com/a/1.5s;animation-delay:3s,https://proxy.everskies.com/a/https://proxy.everskies.com/a/1.5s}
