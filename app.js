@@ -310,3 +310,23 @@ function goBack() {
 // Initialize the app
 document.getElementById('start-button')?.addEventListener('click', () => showCategories(categories));
 showLandingPage(); // Show the landing page on app load
+
+
+function randomizeSnowflakes() {
+  const snowflakes = document.querySelectorAll('.snowflake'); // Select all snowflakes
+  snowflakes.forEach((snowflake) => {
+    const randomTop = Math.random() * 100; // Random percentage for top (0-100%)
+    const randomLeft = Math.random() * 100; // Random percentage for left (0-100%)
+    snowflake.style.setProperty('--top', `${randomTop}vh`); // Set top position as a CSS variable
+    snowflake.style.setProperty('--left', `${randomLeft}vw`); // Set left position as a CSS variable
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  randomizeSnowflakes(); // Randomize snowflake positions on page load
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  randomizeSnowflakes(); // Call the function here to randomize positions
+  showLandingPage(); // Show the landing page on app load
+});
