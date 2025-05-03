@@ -70,6 +70,23 @@ body {
   background: #FFEB3B; /* Slightly darker coral */
 }
 
+.breadcrumb-home-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.breadcrumb-home-button:hover {
+  background-color: #f0f0f0;
+}
+
 .snowflake {
     color: #fff;
     font-size: 120px;
