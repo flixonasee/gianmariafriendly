@@ -314,67 +314,56 @@ showLandingPage(); // Show the landing page on app load
 // snowflakes
 // Ensure the snowflakes container is visible in all cases
 function ensureSnowflakesVisible() {
-  const snowflakeContainer = document.querySelector('.snowflakes');
-  if (snowflakeContainer) {
-    snowflakeContainer.style.display = 'block';
-  } else {
-    console.error('Snowflakes container not found!');
-  }
-}
-
-// Randomize and create snowflakes
-// Ensure the snowflakes container is visible
-function ensureSnowflakesVisible() {
-  const snowflakeContainer = document.querySelector('.snowflakes');
-  if (snowflakeContainer) {
-    snowflakeContainer.style.display = 'block';
-  } else {
-    console.error('Snowflakes container not found!');
-  }
+    const snowflakeContainer = document.querySelector('.snowflakes');
+    if (snowflakeContainer) {
+        snowflakeContainer.style.display = 'block';
+    } else {
+        console.error('Snowflakes container not found!');
+    }
 }
 
 // Randomize and create falling snowflakes
 function randomizeSnowflakes() {
-  const snowflakeContainer = document.querySelector('.snowflakes');
-  const snowflakesCount = 50; // Number of snowflakes
+    const snowflakeContainer = document.querySelector('.snowflakes');
+    const snowflakesCount = 50; // Number of snowflakes
 
-  // Check if container exists
-  if (!snowflakeContainer) {
-    console.error('Snowflake container is missing!');
-    return;
-  }
+    // Check if container exists
+    if (!snowflakeContainer) {
+        console.error('Snowflake container is missing!');
+        return;
+    }
 
-  // Clear existing snowflakes (if any)
-  snowflakeContainer.innerHTML = '';
+    // Clear existing snowflakes (if any)
+    snowflakeContainer.innerHTML = '';
 
-  // Create new snowflakes
-  for (let i = 0; i < snowflakesCount; i++) {
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-    snowflake.textContent = getRandomSnowflakeEmoji(); // Add random emoji for variety
+    // Create new snowflakes
+    for (let i = 0; i < snowflakesCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.textContent = getRandomSnowflakeEmoji(); // Add random emoji for variety
 
-    // Set random starting positions
-    const randomLeft = Math.random() * 100; // Random left position across the viewport
-    const randomAnimationDuration = Math.random() * 5 + 5; // Random animation duration (5-10 seconds)
-    const randomSize = Math.random() * 1.5 + 0.5; // Random size (0.5-2x)
+        // Set random starting positions
+        const randomLeft = Math.random() * 100; // Random left position across the viewport
+        const randomAnimationDuration = Math.random() * 5 + 5; // Random animation duration (5-10 seconds)
+        const randomSize = Math.random() * 1.5 + 0.5; // Random size (0.5-2x)
 
-    // Apply styles
-    snowflake.style.left = `${randomLeft}vw`;
-    snowflake.style.animationDuration = `${randomAnimationDuration}s`;
-    snowflake.style.fontSize = `${randomSize}em`;
+        // Apply styles
+        snowflake.style.left = `${randomLeft}vw`;
+        snowflake.style.animationDuration = `${randomAnimationDuration}s`;
+        snowflake.style.fontSize = `${randomSize}em`;
 
-    snowflakeContainer.appendChild(snowflake); // Add to the container
-  }
+        snowflakeContainer.appendChild(snowflake); // Add to the container
+    }
 }
 
 // Utility function to get a random snowflake emoji
 function getRandomSnowflakeEmoji() {
-  const emojis = ['❄️', '☃️', '🌨️', '⛄', '❅', '❆'];
-  return emojis[Math.floor(Math.random() * emojis.length)];
+    const emojis = ['❄️', '☃️', '🌨️', '⛄', '❅', '❆'];
+    return emojis[Math.floor(Math.random() * emojis.length)];
 }
 
 // Call the function on page load to ensure snowflakes are generated
 document.addEventListener('DOMContentLoaded', () => {
-  ensureSnowflakesVisible();
-  randomizeSnowflakes(); // Generate snowflakes
+    ensureSnowflakesVisible();
+    randomizeSnowflakes(); // Generate snowflakes
 });
