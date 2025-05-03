@@ -311,37 +311,3 @@ function goBack() {
 document.getElementById('start-button')?.addEventListener('click', () => showCategories(categories));
 showLandingPage(); // Show the landing page on app load
 
-// snowflakes
-function randomizeSnowflakes() {
-    const snowflakeContainer = document.querySelector('.snowflakes');
-    const snowflakesCount = 50; // Number of snowflakes
-
-    // Check if container exists
-    if (!snowflakeContainer) {
-        console.error('Snowflake container is missing!');
-        return;
-    }
-
-    // Clear existing snowflakes (if any)
-    snowflakeContainer.innerHTML = '';
-
-    // Create new snowflakes
-    for (let i = 0; i < snowflakesCount; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.textContent = getRandomSnowflakeEmoji(); // Add random emoji for variety
-
-        // Set random starting positions
-        const randomLeft = Math.random() * 100; // Random left position across the viewport
-        const randomAnimationDuration = Math.random() * 5 + 5; // Random animation duration (5-10 seconds)
-        const randomSize = Math.random() * 2 + 0.5; // Random size (0.5-2.5x)
-        const randomSwingDuration = Math.random() * 3 + 2; // Random swing duration (2-5 seconds)
-
-        // Apply styles
-        snowflake.style.left = `${randomLeft}vw`;
-        snowflake.style.animationDuration = `${randomAnimationDuration}s, ${randomSwingDuration}s`; // Apply fall and swing animations
-        snowflake.style.fontSize = `${randomSize}em`;
-
-        snowflakeContainer.appendChild(snowflake); // Add to the container
-    }
-}
