@@ -8,32 +8,21 @@
   <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>    
-  <div class="snowflakes"><div class="snowflake">
-   🧀
-   </div>
-   <div class="snowflake">
-   🍓
-   </div>
-   <div class="snowflake">
-   🥦
-   </div>
-   <div class="snowflake">
-   🥩
-   </div>
-   <div class="snowflake">
-   🐟
-   </div>
-   <div class="snowflake">
-   🍰
-   </div>
-   <div class="snowflake">
-   🥤
-   </div></div>
+  <div class="snowflakes">
+    <div class="snowflake">🧀</div>
+    <div class="snowflake">🍓</div>
+    <div class="snowflake">🥦</div>
+    <div class="snowflake">🥩</div>
+    <div class="snowflake">🐟</div>
+    <div class="snowflake">🍰</div>
+    <div class="snowflake">🥤</div>
+  </div>
   <div id="app">
     <!-- Breadcrumb Header -->
-<header id="breadcrumb-header">
-  <button id="ricomincia-button" class="breadcrumb-back-button" onclick="goBack()">Back</button>
-</header>
+    <header id="breadcrumb-header" style="display: none;">
+      <button id="ricomincia-button" class="breadcrumb-back-button" onclick="goBack()">&lt;</button>
+      <span id="breadcrumb-title" class="breadcrumb-title">Home</span>
+    </header>
     <!-- Main App Content -->
     <main id="content">
       <header id="landing-header">
@@ -46,7 +35,7 @@
           <img src="https://github.com/flixonasee/gfriendly/blob/052e2db5076ce2a1a0c44093f07fc908e1f3d5fb/lol.gif?raw=true" alt="Cover Image">
         </div>
         <!-- Start Button -->
-        <button id="start-button" class="category-button">Inizia</button>
+        <button id="start-button" class="category-button" role="button">Inizia</button>
       </header>
     </main>
   </div>
