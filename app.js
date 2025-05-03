@@ -323,6 +323,17 @@ function ensureSnowflakesVisible() {
 }
 
 // Randomize and create snowflakes
+// Ensure the snowflakes container is visible
+function ensureSnowflakesVisible() {
+  const snowflakeContainer = document.querySelector('.snowflakes');
+  if (snowflakeContainer) {
+    snowflakeContainer.style.display = 'block';
+  } else {
+    console.error('Snowflakes container not found!');
+  }
+}
+
+// Randomize and create falling snowflakes
 function randomizeSnowflakes() {
   const snowflakeContainer = document.querySelector('.snowflakes');
   const snowflakesCount = 50; // Number of snowflakes
@@ -343,10 +354,14 @@ function randomizeSnowflakes() {
     snowflake.textContent = getRandomSnowflakeEmoji(); // Add random emoji for variety
 
     // Set random starting positions
-    const randomTop = Math.random() * 20; // Random top position closer to the top (0-20% of viewport height)
     const randomLeft = Math.random() * 100; // Random left position across the viewport
-    snowflake.style.setProperty('--top', `${randomTop}vh`);
-    snowflake.style.setProperty('--left', `${randomLeft}vw`);
+    const randomAnimationDuration = Math.random() * 5 + 5; // Random animation duration (5-10 seconds)
+    const randomSize = Math.random() * 1.5 + 0.5; // Random size (0.5-2x)
+
+    // Apply styles
+    snowflake.style.left = `${randomLeft}vw`;
+    snowflake.style.animationDuration = `${randomAnimationDuration}s`;
+    snowflake.style.fontSize = `${randomSize}em`;
 
     snowflakeContainer.appendChild(snowflake); // Add to the container
   }
