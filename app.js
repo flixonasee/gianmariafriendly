@@ -251,9 +251,9 @@ function showLandingPage() {
 function showCategories(categories, title = 'Categorie') {
   historyStack.push({ screen: title, categories });
   setBreadcrumbTitle(title);
-  updateGoBackVisibility();
+  updateGoBackVisibility(); // Update visibility of back buttons
 
-  // Hide the snowflakes
+  // Hide the snowflakes when navigating
   document.querySelector('.snowflakes').style.display = 'none';
 
   let categoriesHTML = '<h2 class="subtitle">Scegli una categoria:</h2>';
@@ -263,6 +263,26 @@ function showCategories(categories, title = 'Categorie') {
     `;
   });
   document.getElementById('content').innerHTML = categoriesHTML;
+
+  updateGoHomeVisibility(); // Ensure home button visibility
+}
+
+function goHome() {
+  // Check the history stack to determine if we are in a subcategory
+  if (historyStack.length > 1) {
+    const mainCategoryScreen = historyStack[0]; // The first screen in the stack
+    historyStack.splice(1); // Clear everything except the first screen
+    if (mainCategoryScreen.categories) {
+      showCategories(mainCategoryScreen.categories, 'Categorie');
+    }
+  } else {
+    showLandingPage(); // If no subcategory or category, go to the landing page
+  }
+}
+
+function updateGoHomeVisibility() {
+  const goHomeButton = document.getElementById('go-home-button');
+  goHomeButton.style.display = historyStack.length > 1 ? 'inline-block' : 'none';
 }
 
 // Handle category click
@@ -281,7 +301,7 @@ function handleCategoryClick(index) {
 function showQuestion(question, options) {
   historyStack.push({ screen: question, categories: options });
   setBreadcrumbTitle(question);
-  updateGoBackVisibility();
+  updateGoBackVisibility(); // Update visibility of back buttons
 
   let questionHTML = `<h2 class="subtitle">${question}</h2>`;
   options.forEach((option, index) => {
@@ -290,6 +310,8 @@ function showQuestion(question, options) {
     `;
   });
   document.getElementById('content').innerHTML = questionHTML;
+
+  updateGoHomeVisibility(); // Ensure home button visibility
 }
 
 // Show result
