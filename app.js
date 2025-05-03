@@ -243,23 +243,24 @@ function showLandingPage() {
     <button id="start-button" class="category-button">Inizia</button>
   `;
 
-  // Add event listener to the "Inizia" button
-  document.getElementById('start-button').addEventListener('click', () => showCategories(categories));
+  // Add the event listener to the "Inizia" button here
+  const startButton = document.getElementById('start-button');
+  if (startButton) {
+    startButton.addEventListener('click', () => showCategories(categories));
+  } else {
+    console.error('Start button not found in the DOM.');
+  }
 }
 
 // Function to show categories or subcategories
 function showCategories(categories, title = 'Categorie') {
-  // Push the current screen into the history stack
-  historyStack.push({ screen: title, categories });
-
-  // Update breadcrumb title and visibility
+  historyStack.push({ screen: title, categories }); // Push the current state to history
   setBreadcrumbTitle(title);
   updateGoBackVisibility();
 
   // Hide the snowflakes
   document.querySelector('.snowflakes').style.display = 'none';
 
-  // Render the categories
   let categoriesHTML = '<h2 class="subtitle">Scegli una categoria:</h2>';
   categories.forEach((category, index) => {
     categoriesHTML += `
@@ -267,25 +268,6 @@ function showCategories(categories, title = 'Categorie') {
     `;
   });
   document.getElementById('content').innerHTML = categoriesHTML;
-}
-
-function goHome() {
-  // Check the history stack to determine if we are in a subcategory
-  if (historyStack.length > 1) {
-    const mainCategoryScreen = historyStack[0]; // The first screen in the stack
-    historyStack.splice(1); // Clear everything except the first screen
-    if (mainCategoryScreen.categories) {
-      showCategories(mainCategoryScreen.categories, 'Categorie');
-    }
-  } else {
-    showLandingPage(); // If no subcategory or category, go to the landing page
-  }
-}
-
-function updateGoBackVisibility() {
-  const ricominciaButton = document.getElementById('ricomincia-button');
-  // Show the Back button only if there's more than one screen in the history stack
-  ricominciaButton.style.display = historyStack.length > 1 ? 'inline-block' : 'none';
 }
 
 // Handle category click
@@ -302,14 +284,10 @@ function handleCategoryClick(index) {
 
 // Show a question with options
 function showQuestion(question, options) {
-  // Push the current screen into the history stack
-  historyStack.push({ screen: question, categories: options });
-
-  // Update breadcrumb title and visibility
+  historyStack.push({ screen: question, categories: options }); // Push the current state to history
   setBreadcrumbTitle(question);
   updateGoBackVisibility();
 
-  // Render the question and its options
   let questionHTML = `<h2 class="subtitle">${question}</h2>`;
   options.forEach((option, index) => {
     questionHTML += `
@@ -341,19 +319,14 @@ function showResult(resultMessage) {
 
 // Go back to the previous screen
 function goBack() {
-  // Remove the current screen from the history stack
-  historyStack.pop();
+  historyStack.pop(); // Remove the current screen from the history stack
+  const previousScreen = historyStack[historyStack.length - 1]; // Get the previous screen
 
-  // Get the previous screen from the history stack
-  const previousScreen = historyStack[historyStack.length - 1];
-
-  // If there's no previous screen, go to the landing page
   if (!previousScreen) {
-    showLandingPage();
+    showLandingPage(); // If no previous screen, go to the landing page
     return;
   }
 
-  // Navigate back to the appropriate screen
   if (previousScreen.categories) {
     showCategories(previousScreen.categories, previousScreen.screen);
   } else if (previousScreen.screen) {
@@ -362,7 +335,4 @@ function goBack() {
 }
 
 // Initialize the app
-document.getElementById('start-button')?.addEventListener('click', () => showCategories(categories));
 showLandingPage(); // Show the landing page on app load
-
-
