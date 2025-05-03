@@ -215,59 +215,80 @@ const categories = [
 // Utility functions for navigation and rendering
 const historyStack = [];
 
+// Set the breadcrumb title
 function setBreadcrumbTitle(title) {
-  document.getElementById('breadcrumb-title').textContent = title;
-}
-
-function updateGoBackVisibility() {
-  const ricominciaButton = document.getElementById('ricomincia-button');
-  ricominciaButton.style.display = historyStack.length > 1 ? 'inline-block' : 'none';
-}
-
-// Function to render the landing page
-function showLandingPage() {
-  historyStack.splice(0, historyStack.length); // Clear the navigation history
-  document.getElementById('breadcrumb-title').textContent = 'Home';
-  updateGoBackVisibility();
-
-  // Make the snowflakes visible
-  document.querySelector('.snowflakes').style.display = 'block';
-
-  document.getElementById('content').innerHTML = `
-    <div class="logo">
-      <img src="https://github.com/flixonasee/gfriendly/blob/a24c81f9ccf4d4fa2336e50d78c4f6d6abeae3fd/logo.svg?raw=true" alt="Gianmaria-Friendly Logo">
-    </div>
-    <div class="cover-img">
-      <img src="https://github.com/flixonasee/gfriendly/blob/052e2db5076ce2a1a0c44093f07fc908e1f3d5fb/lol.gif?raw=true" alt="Cover Image">
-    </div>
-    <button id="start-button" class="category-button">Inizia</button>
-  `;
-
-  // Add the event listener to the "Inizia" button here
-  const startButton = document.getElementById('start-button');
-  if (startButton) {
-    startButton.addEventListener('click', () => showCategories(categories));
+  const breadcrumb = document.getElementById('breadcrumb-title');
+  if (breadcrumb) {
+    breadcrumb.textContent = title;
   } else {
-    console.error('Start button not found in the DOM.');
+    console.error('Breadcrumb title element not found.');
   }
 }
 
-// Function to show categories or subcategories
+// Update visibility of the "Back" button
+function updateGoBackVisibility() {
+  const ricominciaButton = document.getElementById('ricomincia-button');
+  if (ricominciaButton) {
+    ricominciaButton.style.display = historyStack.length > 1 ? 'inline-block' : 'none';
+  } else {
+    console.error('Back button element not found.');
+  }
+}
+
+// Render the landing page
+function showLandingPage() {
+  historyStack.splice(0, historyStack.length); // Clear navigation history
+  setBreadcrumbTitle('Home');
+  updateGoBackVisibility();
+
+  // Make the snowflakes visible
+  const snowflakes = document.querySelector('.snowflakes');
+  if (snowflakes) snowflakes.style.display = 'block';
+
+  // Render landing page content
+  const content = document.getElementById('content');
+  if (content) {
+    content.innerHTML = `
+      <div class="logo">
+        <img src="https://github.com/flixonasee/gfriendly/blob/a24c81f9ccf4d4fa2336e50d78c4f6d6abeae3fd/logo.svg?raw=true" alt="Gianmaria-Friendly Logo">
+      </div>
+      <div class="cover-img">
+        <img src="https://github.com/flixonasee/gfriendly/blob/052e2db5076ce2a1a0c44093f07fc908e1f3d5fb/lol.gif?raw=true" alt="Cover Image">
+      </div>
+      <button id="start-button" class="category-button" role="button">Inizia</button>
+    `;
+
+    // Attach event listener to the "Inizia" button
+    const startButton = document.getElementById('start-button');
+    if (startButton) {
+      startButton.addEventListener('click', () => showCategories(categories));
+    } else {
+      console.error('Start button not found in the DOM.');
+    }
+  }
+}
+
+// Show categories or subcategories
 function showCategories(categories, title = 'Categorie') {
-  historyStack.push({ screen: title, categories }); // Push the current state to history
+  historyStack.push({ screen: title, categories });
   setBreadcrumbTitle(title);
   updateGoBackVisibility();
 
   // Hide the snowflakes
-  document.querySelector('.snowflakes').style.display = 'none';
+  const snowflakes = document.querySelector('.snowflakes');
+  if (snowflakes) snowflakes.style.display = 'none';
 
-  let categoriesHTML = '<h2 class="subtitle">Scegli una categoria:</h2>';
-  categories.forEach((category, index) => {
-    categoriesHTML += `
-      <button class="category-button" onclick="handleCategoryClick(${index})">${category.name}</button>
-    `;
-  });
-  document.getElementById('content').innerHTML = categoriesHTML;
+  // Render categories
+  const content = document.getElementById('content');
+  if (content) {
+    let categoriesHTML = '<h2 class="subtitle">Scegli una categoria:</h2>';
+    categories.forEach((category, index) => {
+      categoriesHTML += `
+        <button class="category-button" onclick="handleCategoryClick(${index})">${category.name}</button>
+      `;
+    });
+    content.innerHTML = categoriesHTML;
+  }
 }
 
 // Handle category click
@@ -284,55 +305,51 @@ function handleCategoryClick(index) {
 
 // Show a question with options
 function showQuestion(question, options) {
-  historyStack.push({ screen: question, categories: options }); // Push the current state to history
+  historyStack.push({ screen: question, categories: options });
   setBreadcrumbTitle(question);
   updateGoBackVisibility();
 
-  let questionHTML = `<h2 class="subtitle">${question}</h2>`;
-  options.forEach((option, index) => {
-    questionHTML += `
-      <button class="category-button" onclick="handleCategoryClick(${index})">${option.name}</button>
-    `;
-  });
-  document.getElementById('content').innerHTML = questionHTML;
+  const content = document.getElementById('content');
+  if (content) {
+    let questionHTML = `<h2 class="subtitle">${question}</h2>`;
+    options.forEach((option, index) => {
+      questionHTML += `
+        <button class="category-button" onclick="handleCategoryClick(${index})">${option.name}</button>
+      `;
+    });
+    content.innerHTML = questionHTML;
+  }
 }
 
 // Show result
 function showResult(resultMessage) {
-  console.log("Result message:", resultMessage); // Debugging: Log the result message
   historyStack.push({ screen: 'Risultato' });
   setBreadcrumbTitle('Risultato');
   updateGoBackVisibility();
 
-  // Check if the result is successful or negative
-  const isSuccess = resultMessage.includes('✅');
-  const animationHTML = isSuccess
-    ? `<dotlottie-player src="https://lottie.host/ffcea859-3e7b-4626-b70a-8083a3e8170f/qIng6jeg9Z.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" autoplay></dotlottie-player>`
-    : `<dotlottie-player src="https://lottie.host/20e303c4-3ac6-4e3a-bc72-d25c4c06f576/oq4qT8MmH3.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" autoplay></dotlottie-player>`;
-
-  document.getElementById('content').innerHTML = `
-    ${animationHTML}
-    <h2 class="result">${resultMessage}</h2>
-    <button class="category-button" onclick="showLandingPage()">🔄 Ricomincia</button>
-  `;
+  const content = document.getElementById('content');
+  if (content) {
+    content.innerHTML = `
+      <h2 class="result">${resultMessage}</h2>
+      <button class="category-button" onclick="showLandingPage()">🔄 Ricomincia</button>
+    `;
+  }
 }
 
 // Go back to the previous screen
 function goBack() {
-  historyStack.pop(); // Remove the current screen from the history stack
-  const previousScreen = historyStack[historyStack.length - 1]; // Get the previous screen
+  historyStack.pop();
+  const previousScreen = historyStack[historyStack.length - 1];
 
   if (!previousScreen) {
-    showLandingPage(); // If no previous screen, go to the landing page
+    showLandingPage();
     return;
   }
 
   if (previousScreen.categories) {
     showCategories(previousScreen.categories, previousScreen.screen);
-  } else if (previousScreen.screen) {
-    showQuestion(previousScreen.screen, previousScreen.categories);
   }
 }
 
 // Initialize the app
-showLandingPage(); // Show the landing page on app load
+showLandingPage();
