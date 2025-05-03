@@ -71,29 +71,44 @@ body {
 }
 
 
+/* Snowflakes container */
+.snowflakes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* So the snowflakes don't interfere with clicks */
+  z-index: 10; /* Ensure it appears above other content */
+  overflow: hidden;
+}
+
+/* Individual snowflake style */
 .snowflake {
   position: absolute;
-  index:-1;
-  top: var(--top, 0); /* Start higher on the page */
-  left: var(--left, 0); /* Random horizontal starting point */
-  font-size: 1.5rem; /* Adjust size if needed */
-  animation: fall 20s linear infinite, sway 5s ease-in-out infinite; /* Add falling and swaying animations */
+  top: -10%; /* Start above the viewport */
+  font-size: 8em; /* Default size (can be adjusted dynamically with JS) */
+  animation: fall linear infinite, swing ease-in-out infinite;
+  color: white; /* You can adjust the color for visibility */
+  z-index:-1;
 }
 
+/* Falling animation */
 @keyframes fall {
   0% {
-    transform: translateY(0);
+    transform: translateY(-10%); /* Start above the viewport */
   }
   100% {
-    transform: translateY(100vh); /* Fall to the bottom of the viewport */
+    transform: translateY(110%); /* End below the viewport */
   }
 }
 
-@keyframes sway {
+/* Swinging animation */
+@keyframes swing {
   0%, 100% {
-    transform: translateX(0); /* No horizontal shift at the start and end */
+    transform: translateX(0);
   }
   50% {
-    transform: translateX(20px); /* Sway to the right */
+    transform: translateX(15px); /* Swing to the right */
   }
 }
