@@ -249,13 +249,17 @@ function showLandingPage() {
 
 // Function to show categories or subcategories
 function showCategories(categories, title = 'Categorie') {
+  // Push the current screen into the history stack
   historyStack.push({ screen: title, categories });
-  setBreadcrumbTitle(title);
-  updateGoBackVisibility(); // Update visibility of back buttons
 
-  // Hide the snowflakes when navigating
+  // Update breadcrumb title and visibility
+  setBreadcrumbTitle(title);
+  updateGoBackVisibility();
+
+  // Hide the snowflakes
   document.querySelector('.snowflakes').style.display = 'none';
 
+  // Render the categories
   let categoriesHTML = '<h2 class="subtitle">Scegli una categoria:</h2>';
   categories.forEach((category, index) => {
     categoriesHTML += `
@@ -263,8 +267,6 @@ function showCategories(categories, title = 'Categorie') {
     `;
   });
   document.getElementById('content').innerHTML = categoriesHTML;
-
-  updateGoHomeVisibility(); // Ensure home button visibility
 }
 
 function goHome() {
@@ -280,9 +282,10 @@ function goHome() {
   }
 }
 
-function updateGoHomeVisibility() {
-  const goHomeButton = document.getElementById('go-home-button');
-  goHomeButton.style.display = historyStack.length > 1 ? 'inline-block' : 'none';
+function updateGoBackVisibility() {
+  const ricominciaButton = document.getElementById('ricomincia-button');
+  // Show the Back button only if there's more than one screen in the history stack
+  ricominciaButton.style.display = historyStack.length > 1 ? 'inline-block' : 'none';
 }
 
 // Handle category click
@@ -299,10 +302,14 @@ function handleCategoryClick(index) {
 
 // Show a question with options
 function showQuestion(question, options) {
+  // Push the current screen into the history stack
   historyStack.push({ screen: question, categories: options });
-  setBreadcrumbTitle(question);
-  updateGoBackVisibility(); // Update visibility of back buttons
 
+  // Update breadcrumb title and visibility
+  setBreadcrumbTitle(question);
+  updateGoBackVisibility();
+
+  // Render the question and its options
   let questionHTML = `<h2 class="subtitle">${question}</h2>`;
   options.forEach((option, index) => {
     questionHTML += `
@@ -310,8 +317,6 @@ function showQuestion(question, options) {
     `;
   });
   document.getElementById('content').innerHTML = questionHTML;
-
-  updateGoHomeVisibility(); // Ensure home button visibility
 }
 
 // Show result
@@ -336,13 +341,19 @@ function showResult(resultMessage) {
 
 // Go back to the previous screen
 function goBack() {
+  // Remove the current screen from the history stack
   historyStack.pop();
+
+  // Get the previous screen from the history stack
   const previousScreen = historyStack[historyStack.length - 1];
+
+  // If there's no previous screen, go to the landing page
   if (!previousScreen) {
-    showLandingPage(); // If no previous screen, go to the landing page
+    showLandingPage();
     return;
   }
 
+  // Navigate back to the appropriate screen
   if (previousScreen.categories) {
     showCategories(previousScreen.categories, previousScreen.screen);
   } else if (previousScreen.screen) {
