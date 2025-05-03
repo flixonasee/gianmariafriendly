@@ -59,36 +59,44 @@ const categories = [
       },
     ],
   },
- {
+{
   name: '🍰 Dolci',
+  question: 'Ha il pan di Spagna? 🤔',
   subcategories: [
+    { name: '✔️ Sì', result: '❌ Non è Gianmaria-friendly.' },
     {
-      name: 'Ha il pan di Spagna?',
+      name: '❌ No',
       subcategories: [
-        {
-          name: 'Sì',
-          result: '❌ Non è Gianmaria-friendly.',
-        },
-        {
-          name: 'No',
-          subcategories: [
-            { name: 'Amaretti', result: '❌ Non è Gianmaria-friendly.' },
-            { name: 'Babà al rhum', result: '❌ Non è Gianmaria-friendly. Odio tutti i dolci con alcol dentro.' },
-            { name: 'Cannoli', result: '❌ Non è Gianmaria-friendly.' },
-            { name: 'Cassata Siciliana', result: '❌ Non è Gianmaria-friendly.' },
-            { name: 'Gelato', result: '✅ È Gianmaria-friendly!' },
-            { name: 'Panna cotta', result: '✅ È Gianmaria-friendly!' },
-            { name: 'Sbrisolona', result: '✅ È Gianmaria-friendly!' },
-            { name: 'Tiramisù', result: '✅ È Gianmaria-friendly!' },
-            { name: 'Torta Caprese', result: '❌ Non è Gianmaria-friendly.' },
-            { name: 'Torta della Nonna', result: '❌ Non è Gianmaria-friendly.' },
-            { name: 'Zuppa Inglese', result: '✅ È Gianmaria-friendly!' },
-          ],
-        },
+        { name: 'Amaretti', result: '❌ Non è Gianmaria-friendly.' },
+        { name: 'Babà al rhum', result: '❌ Non è Gianmaria-friendly. Odio tutti i dolci con alcol dentro.' },
+        { name: 'Cannoli', result: '❌ Non è Gianmaria-friendly.' },
+        { name: 'Cassata Siciliana', result: '❌ Non è Gianmaria-friendly.' },
+        { name: 'Gelato', result: '✅ È Gianmaria-friendly!' },
+        { name: 'Panna cotta', result: '✅ È Gianmaria-friendly!' },
+        { name: 'Sbrisolona', result: '✅ È Gianmaria-friendly!' },
+        { name: 'Tiramisù', result: '✅ È Gianmaria-friendly!' },
+        { name: 'Torta Caprese', result: '❌ Non è Gianmaria-friendly.' },
+        { name: 'Torta della Nonna', result: '❌ Non è Gianmaria-friendly.' },
+        { name: 'Zuppa Inglese', result: '✅ È Gianmaria-friendly!' },
       ],
     },
   ],
 },
+{
+    name: '🧀 FORMAGGIO',
+    subcategories: [
+      { name: '🧀 PARMIGIANO', result: '✅ È Gianmaria-friendly!' },
+      { name: '🧀 GRANA', result: '✅ È Gianmaria-friendly!' },
+      {
+        name: '🧀 ALTRO',
+        question: 'È sciolto? 🤔',
+        subcategories: [
+          { name: '✔️ Sì', result: '✅ È Gianmaria-friendly!' },
+          { name: '❌ No', result: '❌ Non è Gianmaria-friendly.' },
+        ],
+      },
+    ],
+  },  
   {
     name: '🍎 Frutta',
     subcategories: [
