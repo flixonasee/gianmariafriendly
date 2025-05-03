@@ -270,6 +270,23 @@ function showLandingPage() {
 
 // Show categories or subcategories
 function showCategories(categories, title = 'Categorie') {
+  // Determine the correct title based on context
+  const lastCategory = historyStack[historyStack.length - 1];
+  if (lastCategory && lastCategory.screen) {
+    if (lastCategory.screen.includes('Pesce')) {
+      title = 'Scegli il pesce';
+    } else if (lastCategory.screen.includes('Frutta')) {
+      title = 'Scegli il frutto';
+    } else if (lastCategory.screen.includes('Verdura')) {
+      title = 'Scegli la verdura';
+    } else if (lastCategory.screen.includes('Formaggio')) {
+      title = 'Scegli il formaggio';
+    } else if (lastCategory.screen.includes('Dolci')) {
+      title = 'Scegli il dolce';
+    }
+  }
+
+  // Update the breadcrumb and visibility
   historyStack.push({ screen: title, categories });
   setBreadcrumbTitle(title);
   updateGoBackVisibility();
@@ -281,7 +298,7 @@ function showCategories(categories, title = 'Categorie') {
   // Render categories
   const content = document.getElementById('content');
   if (content) {
-    let categoriesHTML = '<h2 class="subtitle">Scegli una categoria:</h2>';
+    let categoriesHTML = `<h2 class="subtitle">${title}:</h2>`;
     categories.forEach((category, index) => {
       categoriesHTML += `
         <button class="category-button" onclick="handleCategoryClick(${index})">${category.name}</button>
